@@ -14,7 +14,7 @@ var firebaseConfig = {
 //Listen for form submit 
 document.getElementById('addPersonForm').addEventListener('submit', submitAddPersonForm);
 
-var dataPersonRef = firebase.database().ref('person');
+//var dataPersonRef = firebase.database().ref('person');
 
 
 //Function to get form values
@@ -29,10 +29,12 @@ function submitAddPersonForm(e) {
     //Get value
     var name = getInputValue('name');
     var input_id = getInputValue('input_id');
+    var id = getInputValue('id');
     var votes = getInputValue('votes');
     var percentage = getInputValue('percentage');
 
-    saveDataPerson(name, input_id, votes, percentage);
+    saveDataPerson(name, input_id, votes, percentage, id);
+    saveDataCount(input_id, id);
 
     document.querySelector('.alertSuccessfully').style.display = "block";
     setTimeout(function(){
@@ -42,9 +44,8 @@ function submitAddPersonForm(e) {
 
 
 //Save data person
-function saveDataPerson(name, input_id, votes, percentage){
-    var newDataPersonRef = dataPersonRef.push();
-    newDataPersonRef.set({
+function saveDataPerson(name, input_id, votes, percentage, id){
+    firebase.database().ref('person/person'+ id).set({
         name: name,
         input_id: input_id,
         votes: votes, 
@@ -52,7 +53,31 @@ function saveDataPerson(name, input_id, votes, percentage){
     });
 }
 
+function saveDataCount(input_id){
+    
+    firebase.database().ref('count/'+ input_id).set({
+        input_id: input_id,
+        votes: 0, 
+    });
+}
 
+
+
+document.getElementById('updateQuantity').addEventListener('submit', updateQuantity);
+
+function updateQuantity(){
+    var value_max = getInputValue('value_max');
+    var value_needed = getInputValue('value_needed');
+    console.log('Value: ', value_max, value_needed);
+    firebase.database().ref('quantity').set({
+        value_max: parseInt(value_max),
+        value_needed: parseInt(value_needed)
+    });
+    document.querySelector('.alertUpdateSuccessfully').style.display = "block";
+    setTimeout(function(){
+        document.querySelector('.alertUpdateSuccessfully').style.display = "none";
+    }, 3000);
+}
 //Get data person
 function getDataPerson(){
 
@@ -65,3 +90,6 @@ function getDataPerson(){
 });
 
 }
+
+getDataPerson();
+

@@ -12,6 +12,30 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+
+    var personQuantityNeeded = 0;
+    getQuantity();
+//Function getQuantity
+  function getQuantity(){
+    var html=``;
+    var html2=``;
+    var getDataPerson = firebase.database().ref('quantity');
+    getDataPerson.on('value', function(snapshot) {
+        var data = snapshot.val();
+            console.log('Quantity: ', data);
+            html2 += `Lỗi: Cần ${data.value_needed} thành viên được chọn`;
+            personQuantityNeeded = data.value_needed;
+            html += `<strong>CÁCH THỨC BẦU CHỌN</strong></br> Lựa chọn ${data.value_needed} trong ${data.value_max} tên ứng viên phía dưới bằng cách ấn vào tên của họ. Bạn cần lựa chọn đủ, không thiếu không thừa thì mới có thể gửi phiếu đi. Để tránh số liệu ảo, chúng tôi chỉ cho phép bạn gửi đi một lần duy nhất.</p>`
+            document.getElementById('textTutorial').innerHTML = html;
+            document.getElementById('notiErrorVotesForm').innerHTML = html2;
+
+    });
+}
+
+
+
+
+
   //Show Table Person
   var sizeOfDataPerson = 0;
 function showTablePerson(){
@@ -58,17 +82,29 @@ function submitForm(e) {
     
     //Get value
     var persons={};
+    var validValue={};
     for(var i = 1; i <= sizeOfDataPerson; i++){
         var key = 'person'+i;
-        console.log(key);
+        //console.log(key);
         var value = getInputValue(key);
-        console.log(value);
+        if (parseInt(value)) {
+            var key = 'person'+i;
+            validValue[key]=key;
+            //updateCountVote(key);
+        }
+        //console.log(value);
         persons[key]=value;
         countChecked += parseInt(value);
     }
 
+
+        
     //saveData
-    if (countChecked === 3){
+    if (countChecked === personQuantityNeeded){
+        for (var vV in validValue){
+            updateCountVote(vV);
+            console.log('Du lieu tu countVotes: ', vV);
+        }
         saveData(persons);
         document.querySelector('.alertSuccessfully').style.display = "block";
         setTimeout(function(){
@@ -79,6 +115,7 @@ function submitForm(e) {
         setTimeout(function(){
             document.querySelector('.alertError').style.display = "none";
         }, 3000);
+        
     }
 }
 
@@ -96,5 +133,29 @@ function saveData(persons){
     var newDataRef = dataRef.push();
     newDataRef.set(persons);
 }
+
+
+
+
+function updateCountVote(input_id){
+    var votes = 0;
+    var getDataPerson = firebase.database().ref('person');
+        getDataPerson.on('value', function(snapshot) {
+       
+            snapshot.forEach(function(childSnapshot) {
+            var data = childSnapshot.val();
+            votes = parseInt(data.votes);
+            console.log('VotesIn = ', votes);
+        });
+    });
+
+    votes += 1;
+    console.log('VotesOut = ', votes);
+    firebase.database().ref('person/' + input_id).update({
+        votes: votes,
+    });
+}
+
+
 
 

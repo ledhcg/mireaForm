@@ -20,24 +20,48 @@
       
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" placeholder="Họ và tên ứng viên">
+          <input type="text" class="form-control" id="name" placeholder="( Họ và tên ứng viên )">
         </div>
-        <div class="form-group">
-          <label for="input_id">InputID</label>
-          <input type="text" class="form-control" id="input_id" placeholder="(Form: 'person' + number) Ex: 'person0'">
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="id">ID</label>
+              <input type="number" class="form-control" id="id" placeholder="( Số )">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="input_id">InputID</label>
+              <input type="text" class="form-control" id="input_id" placeholder="( Dạng: 'person' + id ) Ví dụ: id = 0 => 'person0')">
+            </div>
         </div>
-        <div class="form-group">
+
+        <div>
           <label for="votes"></label>
           <input type="hidden" class="form-control" id="votes" value="0">
         </div>
-        <div class="form-group">
+        <div>
           <label for="percentage"></label>
           <input type="hidden" class="form-control" id="percentage" value="0">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Thêm</button>
         <div class="alertSuccessfully alert alert-success" style="display: none;">Thêm ứng viên thành công</div>
       </form>
 
+
+
+      <form id="updateQuantity" style="border-radius: 10px; padding: 3rem; margin-top: 1.5rem; background-color: rgba(255, 255, 255, 0.65); backdrop-filter: blur(15px);">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="value_max">Số lượng lớn nhất</label>
+            <input type="number" class="form-control" id="value_max" placeholder="( Số )">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="value_needed">Số lượng cần nhận</label>
+            <input type="number" class="form-control" id="value_needed" placeholder="( Số )">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Cập nhật</button>
+        <div class="alertUpdateSuccessfully alert alert-success" style="display: none;">Cập nhật số lượng thành công</div>
+      </form>
       
 
 

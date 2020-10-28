@@ -40,7 +40,7 @@ function getDataPerson(){
 }
 
 
-showResult();
+//showResult();
 
 
 var sizeOfDataPerson = 0;
@@ -98,7 +98,7 @@ function randomString(length) {
         length = Math.floor(Math.random() * chars.length);
     }
 
-    var str = '';
+    var str = 'mirea_';
     for (var i = 0; i < length; i++) {
         str += chars[Math.floor(Math.random() * chars.length)];
     }
@@ -109,7 +109,6 @@ function randomString(length) {
 function showDataVotes(){
     var count = 0;
     var html =``;
-    console.log('test');
     
     var showDataVotes = firebase.database().ref('data');
     showDataVotes.on('value', function(snapshot) {
@@ -139,7 +138,7 @@ showTablePerson();
 showDataVotes();
 
 
-function showResult(){
+function showResult(){ //Need fix
     var count = 0;
     var html =``;
     console.log('test');
@@ -149,30 +148,34 @@ function showResult(){
     getDataPerson.on('value', function(snapshot) {
        
         snapshot.forEach(function(childSnapshot) {
+            var key = childSnapshot.key;
          console.log('Test22222222222222222: ', childSnapshot.key);
             var dataPerson = childSnapshot.val();
             var checkInputID = dataPerson.input_id;
-            var votes = dataPerson.votes;
-            var percentage = dataPerson.percentage;
+            var votes = 0;
+            var percentage = 0;
             showDataVotes.on('value', function(snapshot) {
                 var sumTotalVotes = snapshot.numChildren();
                 snapshot.forEach(function(childSnapshot) {
                 var persons = childSnapshot.val();
+                var dataVotes = childSnapshot.val();
                 console.log('TestACX: ', sumTotalVotes);
                 for (var person in persons){
-                    console.log('Test: ', person);
+                    console.log('Person: ', person);
+                    console.log('checkInputID: ', checkInputID)
+                    votes = parseInt(dataPerson.votes);
+                    percentage = parseInt(dataPerson.percentage);
                     if (person === checkInputID){
-                        snapshot.forEach(function(childSnapshot) {
-                           
-                            var dataVotes = childSnapshot.val();
-                            console.log('Test: ', dataVotes[checkInputID]);
-                            if (dataVotes[checkInputID]){
+                        
+                            var ketqua = dataVotes[person];
+                            console.log('Ketqua: ', ketqua);
+                            if (parseInt(dataVotes[checkInputID])){
                                 votes += parseInt(dataVotes[checkInputID]);
+                                console.log('Ketqua234: ', votes);
                             }
-                            
-                        });
                     }
-                    percentage = parseInt(votes)/(parseInt(sumTotalVotes)*3);
+                
+                    percentage = votes/(sumTotalVotes*3);
                     console.log('%: ',percentage);
                     console.log('V: ',votes);
                 }
