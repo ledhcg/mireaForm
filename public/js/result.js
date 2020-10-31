@@ -13,6 +13,14 @@ var firebaseConfig = {
 
 
 
+
+  
+
+
+
+
+
+
 //Get data votes
 function getDataVotes(){
 
@@ -60,8 +68,15 @@ function showTablePerson(){
         html +=    `<tr>
                     <th scope="row">${count}</th>
                     <td>${data.name}</td>
-                    <td>${data.votes}</td>
-                    <td>${data.percentage}</td>
+                    <td>${data.votes} (${data.percentage}%)</td>
+                    <td>
+                    
+                    <div class="progress" style="height: 15px;">
+                        <div class="progress-bar progress-striped" role="progressbar" style="width: ${data.percentage}%; text-align: left; padding-left:15px;" aria-valuenow="${data.percentage}" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    
+                    
+                    </td>
                     </tr>`;  
         trVote += `<th scope="col">${data.name}</th>`;
     });
@@ -137,50 +152,50 @@ function showDataVotes(){
 showTablePerson();
 showDataVotes();
 
-
+var result = {};
 function showResult(){ //Need fix
-    var count = 0;
-    var html =``;
-    console.log('test');
 
-    var getDataPerson = firebase.database().ref('person');
-    var showDataVotes = firebase.database().ref('data');
-    getDataPerson.on('value', function(snapshot) {
+
+    
+    for (var i = 1; i <= sizeOfDataPerson; i++){
+        var key = 'person'+ i;
+        console.log('key: ', key);
+        result[key] = 0;
+    }
+    result['total'] = 0;
+    
+    console.log('Result before: ',result);
+    
+    var getDataVotes = firebase.database().ref('data');
+    getDataVotes.on('value', function(snapshot) {
        
         snapshot.forEach(function(childSnapshot) {
-            var key = childSnapshot.key;
-         console.log('Test22222222222222222: ', childSnapshot.key);
-            var dataPerson = childSnapshot.val();
-            var checkInputID = dataPerson.input_id;
-            var votes = 0;
-            var percentage = 0;
-            showDataVotes.on('value', function(snapshot) {
-                var sumTotalVotes = snapshot.numChildren();
-                snapshot.forEach(function(childSnapshot) {
-                var persons = childSnapshot.val();
-                var dataVotes = childSnapshot.val();
-                console.log('TestACX: ', sumTotalVotes);
-                for (var person in persons){
-                    console.log('Person: ', person);
-                    console.log('checkInputID: ', checkInputID)
-                    votes = parseInt(dataPerson.votes);
-                    percentage = parseInt(dataPerson.percentage);
-                    if (person === checkInputID){
-                        
-                            var ketqua = dataVotes[person];
-                            console.log('Ketqua: ', ketqua);
-                            if (parseInt(dataVotes[checkInputID])){
-                                votes += parseInt(dataVotes[checkInputID]);
-                                console.log('Ketqua234: ', votes);
-                            }
-                    }
-                
-                    percentage = votes/(sumTotalVotes*3);
-                    console.log('%: ',percentage);
-                    console.log('V: ',votes);
-                }
-                });
-            });
+     
+            var dataVotes = childSnapshot.val();
+            for (var i = 1; i <= sizeOfDataPerson; i++){
+                var key = 'person'+ i;
+                console.log('key: ', key);
+                console.log('vote: ', dataVotes[key]);
+                result[key] += parseInt(dataVotes[key]);
+                result['total'] += 1;
+            }
         });
     });
+    console.log('Result after: ', result);
+    
+}
+
+function updateResult(){
+    showResult();
+    for (var i = 1; i <= sizeOfDataPerson; i++){
+        var key = 'person' + i;
+        console.log('key: ', key);
+        firebase.database().ref('person/' + key).update({
+            votes: result[key],
+            percentage: (result[key]/result['total']*100).toFixed(2)
+        });
+    }
+    document.querySelector('.showTableResult').style.display ='block';
+    document.querySelector('.preloadResult').style.display = 'none';
+    document.querySelector('.preloadResult1').style.display = 'none';
 }
