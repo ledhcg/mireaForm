@@ -137,7 +137,7 @@ function showPerson(){
 
         var data = childSnapshot.val();
         html +=    `<div class="form-group col">
-                        <input onclick="$(this).attr('value', this.checked ? 1 : 0)" type="checkbox" name="${data.input_id}" id="${data.input_id}"" class="checkbox-input" value="0"/>
+                        <input onclick="$(this).attr('value', this.checked ? 1 : 0)" type="checkbox" name="${data.input_id}" id="${data.input_id}" class="checkbox-input" value="0"/>
                         <label for="${data.input_id}" class="checkbox-label">
                             <div class="checkbox-text">
                                 <p class="checkbox-text--title">${data.name}</p>
