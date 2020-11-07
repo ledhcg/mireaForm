@@ -16,26 +16,34 @@ Instagram: @ledhcg
 -----------------------------------------
 Project: Mirea Form
 Verson: 2.0
-//////////////////////////////////
-|--------------------------------|
-|--------------------------------|
-|---------------------**---------|
-|------------------**--*---------|
-|----------------**---**---------|
-|---------------**---**----------|
-|--------------**---**-----------|
-|-------------*******-*******----|
-|----------*****--**-**----------|
-|------***----**-****------------|
-|----***------******---------*---|
-|---***------***--***********----|
-|----**-----**-*----******-------|
-|------*****----*----------------|
-|----------------*---------------|
-|-----------------*--------------|
-|-------------------*------------|
-|--------------------------------|
-//////////////////////////////////
+
+|----------------------------------------|
+|---***---------******----------******---|
+|---***---------***---***-----***--------|
+|---***---------***----***---***---------|
+|---***---------***----***---***---------|
+|---***---------***---***-----***--------|
+|---*********---******----------******---|
+|----------------------------------------|
+
+|----------------------------------------|
+|-------------------------**-------------|
+|----------------------**--*-------------|
+|--------------------**---**-------------|
+|-------------------**---**--------------|
+|------------------**---**---------------|
+|-----------------*******-*******--------|
+|-------------******--**-**--------------|
+|----------***----**-****----------------|
+|--------***------******---------*-------|
+|-------***------***--***********--------|
+|--------**-----**-*----******-----------|
+|----------*****----*--------------------|
+|--------------------*-------------------|
+|---------------------*------------------|
+|-----------------------*----------------|
+|----------------------------------------|
+
 
 
 */
@@ -45,16 +53,36 @@ console.log('Website: dinhcuong.me');
 console.log('Email: dinhcuong.firewin99@gmail.com');
 console.log('Facebook: @ledhcg');
 console.log('Instagram: @ledhcg');
-console.log('-----------------------------------------');
-console.log('-----------------------------------------');
-console.log('----///--------///////---------//////----');
-console.log('----///--------///---///-----///---------');
-console.log('----///--------///----///---///----------');
-console.log('----///--------///----///---///----------');
-console.log('----///--------///---///-----///---------');
-console.log('----////////---///////--------///////----');
-console.log('-----------------------------------------');
-console.log('-----------------------------------------');
+console.log(`
+|----------------------------------------|
+|---***---------******----------******---|
+|---***---------***---***-----***--------|
+|---***---------***----***---***---------|
+|---***---------***----***---***---------|
+|---***---------***---***-----***--------|
+|---*********---******----------******---|
+|----------------------------------------|
+
+|----------------------------------------|
+|-------------------------**-------------|
+|----------------------**--*-------------|
+|--------------------**---**-------------|
+|-------------------**---**--------------|
+|------------------**---**---------------|
+|-----------------*******-*******--------|
+|-------------******--**-**--------------|
+|----------***----**-****----------------|
+|--------***------******---------*-------|
+|-------***------***--***********--------|
+|--------**-----**-*----******-----------|
+|----------*****----*--------------------|
+|--------------------*-------------------|
+|---------------------*------------------|
+|-----------------------*----------------|
+|----------------------------------------|
+
+`);
+
 console.log('Project: Mirea Form');
 console.log('Verson: 2.0');
 
@@ -84,7 +112,7 @@ var firebaseConfig = {
     var getDataPerson = firebase.database().ref('quantity');
     getDataPerson.on('value', function(snapshot) {
         var data = snapshot.val();
-            console.log('Quantity: ', data);
+            //console.log('Quantity: ', data);
             html2 += `Lỗi: Cần ${data.value_needed} thành viên được chọn`;
             personQuantityNeeded = data.value_needed;
             html += `<strong>CÁCH THỨC BẦU CHỌN</strong></br> Lựa chọn ${data.value_needed} trong ${data.value_max} ứng viên phía dưới bằng cách ấn vào tên của họ. Bạn cần lựa chọn đủ, không thiếu không thừa thì mới có thể gửi phiếu đi. Để tránh số liệu ảo, chúng tôi chỉ cho phép bạn gửi đi một lần duy nhất.</p>`
@@ -109,7 +137,7 @@ function showPerson(){
 
         var data = childSnapshot.val();
         html +=    `<div class="form-group col">
-                        <input onclick="$(this).attr('value', this.checked ? 1 : 0)" type="checkbox" name="${data.input_id}" id="${data.input_id}"" class="checkbox-input" value="0"/>
+                        <input onclick="$(this).attr('value', this.checked ? 1 : 0)" type="checkbox" name="${data.input_id}" id="${data.input_id}" class="checkbox-input" value="0"/>
                         <label for="${data.input_id}" class="checkbox-label">
                             <div class="checkbox-text">
                                 <p class="checkbox-text--title">${data.name}</p>
@@ -179,16 +207,18 @@ function submitForm(e) {
     
     //Get value
     var persons={};
-    var validValue={};
+    //var validValue={};
     for(var i = 1; i <= sizeOfDataPerson; i++){
         var key = 'person'+i;
         //console.log(key);
         var value = getInputValue(key);
+        /*
         if (parseInt(value)) {
             var key = 'person'+i;
             validValue[key]=key;
             //updateCountVote(key);
         }
+        */
         //console.log(value);
         persons[key]= parseInt(value);
         countChecked += parseInt(value);
@@ -197,9 +227,9 @@ function submitForm(e) {
     
     if (parseInt(getInputValue('inputGroupSelect01'))) {
         var idChooseName = parseInt(getInputValue('inputGroupSelect01'));
-        console.log('id', idChooseName);
+        //console.log('id', idChooseName);
     } else {
-        console.log('id', idChooseName);
+        //console.log('id', idChooseName);
         document.querySelector('.alertChooseName').style.display = "block";
         setTimeout(function(){
             document.querySelector('.alertChooseName').style.display = "none";
@@ -208,30 +238,29 @@ function submitForm(e) {
         
     if (getInputValue('inputCodeValid')) {
         var codeValid = getInputValue('inputCodeValid');
-        console.log('codeValid', codeValid);
+        //console.log('codeValid', codeValid);
     } else {
-        console.log('codeValid', codeValid);
+        //console.log('codeValid', codeValid);
         document.querySelector('.alertCodeValidNull').style.display = "block";
         setTimeout(function(){
             document.querySelector('.alertCodeValidNull').style.display = "none";
         }, 3000);
     }
     //saveData
-    console.log('Result check: ', checkCode(idChooseName, codeValid));
+    
 
     if (checkCode(idChooseName, codeValid)){
         if (countChecked === personQuantityNeeded){
+            /*
             for (var vV in validValue){
-                //updateCountVote(vV);
                 update(vV);
-                console.log('Du lieu tu countVotes: ', vV);
             }
+            */
             saveData(persons);
-
             firebase.database().ref('checkPerson/'+ idChooseName).update({
                 check: true
             });
-            //localStorage
+
             localStorage.setItem('key','20201031');
 
             location.reload();
@@ -266,7 +295,7 @@ function saveData(persons){
 }
 
 
-
+/*
 
 function updateCountVote(input_id){
     var votes = 0;
@@ -294,7 +323,7 @@ function update(input_id){
         getDataPerson.on('value', function(snapshot) {
              var data = snapshot.val();
             votes = parseInt(data[input_id]);
-            console.log('VotesIn = ', votes);
+            //console.log('VotesIn = ', votes);
           
     });
 
@@ -302,9 +331,15 @@ function update(input_id){
     var valueVote={};
     
     valueVote[input_id]=votes;
-    console.log('VotesOut = ', votes);
+    //console.log('VotesOut = ', votes);
     firebase.database().ref('countVotes').update(valueVote);
 }
+
+
+
+*/
+
+
 
 //Show choose name 
 
@@ -323,10 +358,8 @@ function showChooseName(){
 
 }
 
-//Function show input code 
 
-
-//Check code person //caafdn fix
+//Check code person
 
 
 function checkCode(id, code){
@@ -335,11 +368,11 @@ function checkCode(id, code){
     getDataCheckCode.on('value', function(snapshot){
         snapshot.forEach(function(childSnapshot){
             var data = childSnapshot.val();
-            console.log('ID checkCode ', data.id);
-            console.log('Code checkCode ', data.code);
+            //console.log('ID checkCode ', data.id);
+            //console.log('Code checkCode ', data.code);
             if (parseInt(data.id) === id && data.code === code){
-                console.log('ID Success ', data.id);
-                console.log('Code Success ', data.code);
+                //console.log('ID Success ', data.id);
+                //console.log('Code Success ', data.code);
                 result = true;
             }
         });

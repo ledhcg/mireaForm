@@ -1,53 +1,3 @@
-/*
------------------------------------------
-Author: LE DINH CUONG
-Website: dinhcuong.me
-Email: dinhcuong.firewin99@gmail.com
-Facebook: @ledhcg
-Instagram: @ledhcg
------------------------------------------
------------------------------------------
-----***--------******----------******----
-----***--------***---***-----***---------
-----***--------***----***---***----------
-----***--------***----***---***----------
-----***--------***---***-----***---------
-----********---******----------******----
------------------------------------------
-Project: Mirea Form
-Verson: 2.0
-
-|----------------------------------------|
-|---***---------******----------******---|
-|---***---------***---***-----***--------|
-|---***---------***----***---***---------|
-|---***---------***----***---***---------|
-|---***---------***---***-----***--------|
-|---*********---******----------******---|
-|----------------------------------------|
-
-|----------------------------------------|
-|-------------------------**-------------|
-|----------------------**--*-------------|
-|--------------------**---**-------------|
-|-------------------**---**--------------|
-|------------------**---**---------------|
-|-----------------*******-*******--------|
-|-------------******--**-**--------------|
-|----------***----**-****----------------|
-|--------***------******---------*-------|
-|-------***------***--***********--------|
-|--------**-----**-*----******-----------|
-|----------*****----*--------------------|
-|--------------------*-------------------|
-|---------------------*------------------|
-|-----------------------*----------------|
-|----------------------------------------|
-
-
-
-*/
-
 console.log('Author: LE DINH CUONG');
 console.log('Website: dinhcuong.me');
 console.log('Email: dinhcuong.firewin99@gmail.com');
@@ -84,8 +34,7 @@ console.log(`
 `);
 
 console.log('Project: Mirea Form');
-console.log('Verson: 2.0');
-
+console.log('Verson: 0.9');
 
 
 var firebaseConfig = {
@@ -113,9 +62,10 @@ var firebaseConfig = {
     getDataPerson.on('value', function(snapshot) {
         var data = snapshot.val();
             //console.log('Quantity: ', data);
-            html2 += `Lỗi: Cần ${data.value_needed} thành viên được chọn`;
+            html2 += `LỖI: Cần ${data.value_needed} thành viên được chọn`;
             personQuantityNeeded = data.value_needed;
-            html += `<strong>CÁCH THỨC BẦU CHỌN</strong></br> Lựa chọn ${data.value_needed} trong ${data.value_max} ứng viên phía dưới bằng cách ấn vào tên của họ. Bạn cần lựa chọn đủ, không thiếu không thừa thì mới có thể gửi phiếu đi. Để tránh số liệu ảo, chúng tôi chỉ cho phép bạn gửi đi một lần duy nhất.</p>`
+            html += `<h5 class="alert-heading text-center"><strong>CÁCH THỨC BẦU CHỌN</strong></h5>
+            <p class="text-center">Lựa chọn ${data.value_needed} trong ${data.value_max} ứng viên phía dưới bằng cách ấn vào tên của họ. Bạn cần lựa chọn đủ, không thiếu không thừa thì mới có thể gửi phiếu đi. Để tránh số liệu ảo, chúng tôi chỉ cho phép bạn gửi đi một lần duy nhất.</p>`;
             document.getElementById('textTutorial').innerHTML = html;
             document.getElementById('notiErrorVotesForm').innerHTML = html2;
 
@@ -136,7 +86,7 @@ function showPerson(){
     snapshot.forEach(function(childSnapshot) {
 
         var data = childSnapshot.val();
-        html +=    `<div class="form-group col">
+        html +=    `<div class="col-md-6 col-12">
                         <input onclick="$(this).attr('value', this.checked ? 1 : 0)" type="checkbox" name="${data.input_id}" id="${data.input_id}" class="checkbox-input" value="0"/>
                         <label for="${data.input_id}" class="checkbox-label">
                             <div class="checkbox-text">
@@ -146,6 +96,10 @@ function showPerson(){
                         </label>
                     </div>`;  
     });
+
+         html += `  <div class="col-md-6 col-12">
+                        <image class="center-image" src="https://media.giphy.com/media/js5HuiISwySuBbj34z/giphy.gif"></image>                      
+                    </div>`;
 
     sizeOfDataPerson = snapshot.numChildren();
     document.getElementById('showPerson').innerHTML = html;
@@ -164,19 +118,46 @@ function checkValid(){
             showStop();
             
         } else {
+            document.getElementById('mireaForm').innerHTML = `      <div class="alert alert-info" id="textTutorial">
+                                                                        <!--Content for textTutorial-->
+                                                                    </div>
+                                                                    <div class="row" id="showPerson">
+                                                                        <!--Content for showPerson-->
+                                                                    </div>
+                                                                        <a style="margin-top: 20px"></a>
+                                                                    <div class="row">
+                                                                    
+                                                                        <div class="col-md-6 col-12" id="showInputCode">
+                                                                        <!--Content for showInputCode-->
+                                                                        </div>
+                                                                        <div class="col-md-6 col-12" id="showArenaChoosePerson">
+                                                                        <!--Content for showArenaChoosePerson-->
+                                                                        </div>
+
+                                                                        <div class="col-12 d-flex justify-content-center" style="margin: 20px 0px;">
+                                                                            <button type="submit" class="btn btn-lg btn-primary btn-block">GỬI ĐI</button>
+                                                                        </div>
+                                                                        
+                                                                    </div>
+                                                                    <div class="alert alert-light-danger color-danger text-center alertError" style="display: none;" id="notiErrorVotesForm"><strong><!--Content for notiErrorVotesForm--></strong></div>
+                                                                    <div class="alert alert-light-danger color-danger text-center alertCodeValidWrong" style="display: none;"><strong>LỖI - Tên và mã cá nhân không khớp.</strong></div>
+                                                                    <div class="alert alert-light-danger color-danger text-center alertCodeValidNull" style="display: none;"><strong>LỖI - Vui lòng điền mã cá nhân của bạn.</strong></div>
+                                                                    <div class="alert alert-light-danger color-danger text-center alertChooseName" style="display: none;"><strong>LỖI - Vui lòng chọn tên của bạn.</strong></div>`;
             showPerson();
             getQuantity();
-            document.getElementById('showInputCode').innerHTML = ` <div class="form-group">
-                                                                     <label for="inputCodeValid">Mã cá nhân</label>
-                                                                        <input type="text" class="form-control" id="inputCodeValid" placeholder="Nhập mã cá nhân tại đây...">
+            document.getElementById('showInputCode').innerHTML = ` <h6>MÃ ID CÁ NHÂN</h6>
+                                                                     <div class="form-group" >
+                                                                         <input type="text" id="inputCodeValid" class="form-control form-control-lg" name="inputCodeValid"
+                                                                             placeholder="Dán ID từ email của bạn">
                                                                      </div>`;
 
-            document.getElementById('showArenaChoosePerson').innerHTML = `<div class="input-group mb-3">
-                                                                                <div class="input-group-prepend">
-                                                                                <label class="input-group-text" for="inputGroupSelect01">Tên người bầu cử</label>
-                                                                                </div>
-                                                                                <select class="custom-select" id="inputGroupSelect01">
-                                                                                    <!--Content-->
+            document.getElementById('showArenaChoosePerson').innerHTML = ` <h6>NGƯỜI BẦU CỬ</h6>
+                                                                            <div class="form-group">
+                                                                                <select class="form-select form-select-lg"id="inputGroupSelect01" >
+                                                                                 
+                                                                                        <!--Content for inputGroupSelect01-->
+                                                                                   
+                                                                                    
                                                                                 </select>
                                                                             </div>`;
             showChooseName();
@@ -187,7 +168,8 @@ function checkValid(){
 
 //
 function showStop(){ 
-    document.getElementById('stop').innerHTML = `<h1 class="title">Bạn đã bỏ phiếu thành công.</h1>`;
+    document.getElementById('mireaForm').innerHTML = `<div class="alert alert-success text-center text-white text-success">Cảm ơn. Bạn đã bỏ phiếu thành công.</div>
+                                                        <image class="center-image-success" src="https://media.giphy.com/media/eh7Uqh7n6HRjHQLs3y/giphy.gif"></image>`;
    
 }
 
@@ -344,13 +326,14 @@ function update(input_id){
 //Show choose name 
 
 function showChooseName(){
-    var html =`<option value="0" selected>Chọn...</option>`;
+    //var html=``;
+    var html =`<option class="style-select-option-0" selected value="0">Chọn tên của bạn</option>`;
     var getDataPerson = firebase.database().ref('checkPerson');
     getDataPerson.on('value', function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
         var data = childSnapshot.val();
         if (!(data.check)){
-        html +=    `<option value="${data.id}">${data.name}</option>`;
+        html +=    `<option class="style-select-option" value="${data.id}">${data.name}</option>`;
         }  
     });
     document.getElementById('inputGroupSelect01').innerHTML = html;

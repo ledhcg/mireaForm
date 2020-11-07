@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KẾT QUẢ BỎ PHIẾU</title>
+    
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/vendors/chartjs/Chart.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon">
+</head>
+<body style="background-image: url(https://www.fg-a.com/wallpapers/white-marble-4-2018.jpg);">
+
+            
+<div class="main-content container-fluid" style="margin-top: 50px;">
+   
+    <section class="section" style="margin: 50px;">
+        <div class="card-header preloadResult">
+            <h1 class="title">KẾT QUẢ BỎ PHIẾU</h1>
+            <div style="background-image: url(https://media.giphy.com/media/j2AqKHK9rq217Ag8EX/giphy.gif);">
+                <image class="center-image-logo" src="images/logo.png"></image>
+            </div>
+            <h2 style="margin-top: 50px"class="text-center"><strong>ĐẠI HỘI CHI ĐOÀN MIREA - ĐẠI HỌC CÔNG NGHỆ LIÊN BANG NGA</strong></h2>
+            <h4 style="margin-bottom: 50px"class="text-center">Nhiệm kỳ: 2020-2021</h4>
+            <!--<image class="preloadResult center-image-loading" src="https://media.giphy.com/media/YMM6g7x45coCKdrDoj/giphy.gif"></image>-->
+            <div class="alert alert-light-success color-success text-center alertSuccess" style="display: none; margin-bottom: 10px;"><strong>Kết quả đã sẵn sàng!</strong></div>
+            
+            <button onclick="updateResult()" class="btn btn-primary btn-lg btn-block preloadResult1">TÍNH TOÁN DỮ LIỆU</button>
+            <button onclick="showDisplay()" class="btn btn-primary btn-lg btn-block preloadResult2">HIỂN THỊ KẾT QUẢ</button>
+            
+        </div>
+
+        <div class="card preloadResult3">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title">Danh sách thành viên chi đoàn</h4>
+            </div>
+            <div class="card-body px-0 pb-0">
+                <div class="table-responsive">
+                    <table class='table mb-0' id="table1">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tên thành viên</th>
+                                <th>ID</th>
+                                <th>Trạng thái</th>
+                              </tr>
+                            </thead>
+                            <tbody id="tbodyPersonMirea">
+                              <!--Content-->
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+         
+        <div class="row mb-4" >
+            <div class="showTableResult" style="display: none">
+                <div class="card" style="background-image:url('images/mirea1.jpg');background-size: cover;">
+                    <div class="card-header">
+                        <h3 class='card-heading p-1 pl-3'>BIỂU ĐỒ KẾT QUẢ BỎ PHIẾU</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 col-12">
+                                <div class="pl-3">
+                                    <div id="showTotalVotes123"><!--Content for showTotalVotes--></div>
+                                    <div class="legends">
+                                        <div class="legend d-flex flex-row align-items-center">
+                                            <div class='w-3 h-3 rounded-full bg-grey mr-2'></div><span class='text-xl'>Ứng viên không trúng cử</span>
+                                        </div>
+                                        <div class="legend d-flex flex-row align-items-center">
+                                            <div class='w-3 h-3 rounded-full bg-blue mr-2'></div><span class='text-xl'>Ứng viên trúng cử</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-8 col-12">
+                                <canvas id="bar"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="card-title">BẢNG THỐNG KÊ KẾT QUẢ</h4>
+                    </div>
+                    <div class="card-body px-0 pb-0">
+                        <div class="table-responsive">
+                            <table class='table mb-0' id="table1">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Tên ứng viên</th>
+                                        <th>Tên ứng viên</th>
+                                        <th>Tỷ lệ bầu cử</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyPerson">
+                                    <!--Content-->
+                                  </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h4 class="card-title">BẢNG THỐNG KÊ PHIẾU BẦU CỬ</h4>
+                    </div>
+                    <div class="card-body px-0 pb-0">
+                        <div class="table-responsive">
+                            <table class='table mb-0' id="table1">
+                                <thead>
+                                    <tr id="trVote">
+                                        <!--Content-->
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyVote">
+                                    <!--Content-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+</div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+    <script src="assets/js/feather-icons/feather.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/vendors/chartjs/Chart.min.js"></script>
+    <script src="assets/vendors/apexcharts/apexcharts.min.js"></script>
+    <script src="assets/js/pages/dashboard2.js"></script>
+
+    <script src="assets/js/main.js"></script>
+    <script src="js/result.js"></script>
+</body>
+</html>

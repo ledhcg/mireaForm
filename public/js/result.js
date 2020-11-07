@@ -19,7 +19,7 @@ var firebaseConfig = {
 
 
 
-
+/*
 
 //Get data votes
 function getDataVotes(){
@@ -46,6 +46,7 @@ function getDataPerson(){
 });
 
 }
+*/
 
 
 //showResult();
@@ -55,16 +56,24 @@ var sizeOfDataPerson = 0;
 //Show Table Person
 
 function showTablePerson(){
+    var htmlDataCountVotes =``;
+    const getDataCountVotes = firebase.database().ref('countVotes');
+    getDataCountVotes.on('value', function(snapshot) {
+            const dataCountVotes = snapshot.val();
+            htmlDataCountVotes += `<h1 class='mt-5' >Tổng số phiếu: ${dataCountVotes.total}</h1>`;
+            document.getElementById('showTotalVotes123').innerHTML = htmlDataCountVotes;
+    });
     
-    var count = 0;
+
+    let count = 0;
     var trVote = `  <th scope="col">#</th>
                 <th scope="col">ID Ẩn danh</th>`;
     var html =``;
-    var getDataPerson = firebase.database().ref('person');
+    const getDataPerson = firebase.database().ref('person').orderByChild('votes');
     getDataPerson.on('value', function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
+        const data = childSnapshot.val();
         count++;
-        var data = childSnapshot.val();
         html +=    `<tr>
                     <th scope="row">${count}</th>
                     <td>${data.name}</td>
@@ -74,14 +83,14 @@ function showTablePerson(){
                     <div class="progress" style="height: 15px;">
                         <div class="progress-bar progress-striped" role="progressbar" style="width: ${data.percentage}%; text-align: left; padding-left:15px;" aria-valuenow="${data.percentage}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-                    
-                    
+                      
                     </td>
                     </tr>`;  
         trVote += `<th scope="col">${data.name}</th>`;
+
+
     });
 
-    //Size of Data Person
     sizeOfDataPerson = snapshot.numChildren();
 
     document.getElementById('tbodyPerson').innerHTML = html;
@@ -90,8 +99,85 @@ function showTablePerson(){
     html =``;
     trVote = `  <th scope="col">#</th>
                 <th scope="col">ID Ẩn danh</th>`;
+    showChart();  
+    });
+     
+}
+
+//Show Chart
+function showChart(){
+    let arrayDataPerson = [];
+    let arrayDataVote = [];
+    const addPerson = person => {
+        const newArrayDataPerson = [...arrayDataPerson];
+        newArrayDataPerson.push(person);
+        arrayDataPerson = newArrayDataPerson;
+    }
+    const addVote = vote => {
+        const newArrayDataVote = [...arrayDataVote];
+        newArrayDataVote.push(vote);
+        arrayDataVote = newArrayDataVote;
+    }
+    const getDataPerson = firebase.database().ref('person').orderByChild('votes');
+    getDataPerson.on('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            const data = childSnapshot.val();
+            addPerson(data.name);
+            addVote(data.votes);
+        });
+        //console.log("Array: ",arrayDataPerson); 
+        pushDataToChart(arrayDataPerson, arrayDataVote);
+    });
+
+}
+
+function pushDataToChart(arrayDataPerson, arrayDataVote){
+
+    var ctxBar = document.getElementById("bar").getContext("2d");
+    var myBar = new Chart(ctxBar, {
+        
+    type: 'bar',
+    data: {
+        labels: arrayDataPerson,
+        datasets: [{
+        label: 'Votes',
+        backgroundColor: [chartColors.grey, chartColors.grey, chartColors.blue, chartColors.blue, chartColors.blue, chartColors.blue, chartColors.blue],
+        data: arrayDataVote
+        }]
+    },
+    options: {
+        responsive: true,
+        barRoundness: 1,
+        title: {
+        display: false,
+        text: "Chart"
+        },
+        legend: {
+        display:false
+        },
+        scales: {
+        yAxes: [{
+            ticks: {
+            beginAtZero: true,
+            suggestedMax: 30 + 20,
+            padding: 10,
+            },
+            gridLines: {
+            drawBorder: false,
+            }
+        }],
+        xAxes: [{
+                gridLines: {
+                    display:false,
+                    drawBorder: false
+                }
+            }]
+        }
+    }
     });
 }
+
+
 
 //Change text
 function changeText(number){
@@ -152,11 +238,9 @@ function showDataVotes(){
 showTablePerson();
 showDataVotes();
 
+
 var result = {};
-function showResult(){ //Need fix
-
-
-    
+function showResult(){     
     for (var i = 1; i <= sizeOfDataPerson; i++){
         var key = 'person'+ i;
         console.log('key: ', key);
@@ -164,7 +248,7 @@ function showResult(){ //Need fix
     }
     result['total'] = 0;
     
-    console.log('Result before: ',result);
+    //console.log('Result before: ',result);
     
     var getDataVotes = firebase.database().ref('data');
     getDataVotes.on('value', function(snapshot) {
@@ -181,7 +265,7 @@ function showResult(){ //Need fix
             }
         });
     });
-    console.log('Result after: ', result);
+    //console.log('Result after: ', result);
     
 }
 
@@ -194,8 +278,66 @@ function updateResult(){
             votes: result[key],
             percentage: (result[key]/result['total']*100).toFixed(2)
         });
+        firebase.database().ref('countVotes').update(result);
     }
+    document.querySelector('.alertSuccess').style.display = "block";
+    setTimeout(function(){
+        document.querySelector('.alertSuccess').style.display = "none";
+        location.reload();
+    }, 3000);
+    //showTablePerson();
+    //document.querySelector('.showTableResult').style.display ='block';
+    //document.querySelector('.preloadResult').style.display = 'none';
+    //document.querySelector('.preloadResult1').style.display = 'none'; 
+}
+
+
+function showDisplay(){
+    showTablePerson();
+    showDataVotes();
     document.querySelector('.showTableResult').style.display ='block';
     document.querySelector('.preloadResult').style.display = 'none';
-    document.querySelector('.preloadResult1').style.display = 'none';
+    document.querySelector('.preloadResult1').style.display = 'none'; 
+    document.querySelector('.preloadResult2').style.display = 'none'; 
+    document.querySelector('.preloadResult3').style.display = 'none'; 
+}
+
+
+//Show Person of Mirea
+showDataPersonMirea();
+function showDataPersonMirea(){
+    var count = 0;
+    var html =``;
+    
+    var showDataPersonMirea = firebase.database().ref('checkPerson');
+    showDataPersonMirea.on('value', function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+            count++;
+
+            html +=` <tr>
+                    <th scope="row">${count}</th>`;
+
+            var data = childSnapshot.val();
+            
+                html += `
+                        <td>${data.name}</td>
+                        <td>${data.id}</td>`;
+                if (data.check){
+                    html +=`    <td>
+                                    <span class="badge bg-success">Đã bầu cử</span>
+                                </td>`;
+                } else {
+                    html +=`     <td>
+                                    <span class="badge bg-danger">Chưa bầu cử</span>
+                                </td>`;
+                }
+                            
+            
+            html += `</tr>`;
+            
+        });
+        document.getElementById('tbodyPersonMirea').innerHTML = html;
+        html =``;
+        count = 0;
+    });
 }
