@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THIẾT LẬP BẦU CỬ</title>
+    
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="images/logo.ico" type="image/x-icon">
+</head>
+
+<body style="background-image: url(https://www.fg-a.com/wallpapers/white-marble-4-2018.jpg); background-size: cover; background-repeat: no-repeat;">
+
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">
+            <img src="images/logo.png"  height="30" class="d-inline-block align-top" alt="">
+        </a>
+      
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="page-home.html"><strong>HI, ADMIN</strong></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="page-list-persion-mirea.html">Danh sách đoàn viên</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="page-all-setting.html">Thiết lập bầu cử</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="page-result.html">Kết quả kiểm phiếu</a>
+            </li>
+           
+            <li class="nav-item">
+                <a class="nav-link" href="page-vote.html">Phiếu bầu cử</a>
+            </li>
+          </ul>
+          <a onclick="logout()" class="btn btn-light">Đăng xuất</a>
+        </div>
+      </nav>
+<div class="main-content container-fluid" style="margin-top: 50px;">
+    <section id="multiple-column-form" style="margin: 50px;">
+        
+
+        
+
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title">DANH SÁCH ỨNG VIÊN</h4>
+                <div>
+                    <a onclick="hiddenTablePersion()" class="btn btn-danger round">Ẩn</a>
+                    <a onclick="showTablePersion()" class="btn btn-primary round">Hiển thị</a>
+                </div>
+            </div>
+            <div class="card-body px-0 pb-0 tablePersion" style="display: none">
+                <div class="table-responsive">
+                    <table class='table mb-0 ' id="table1" >
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tên ứng viên</th>
+                                <th>Số lượng phiếu</th>
+                                <th>Tỷ lệ bầu cử</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyPerson">
+                            <!--Content-->
+                          </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        
+
+        
+
+        
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h4 class="card-title">DANH SÁCH THÀNH VIÊN CHI ĐOÀN</h4>
+                <div>
+                    <a onclick="hiddenTableListPersionMirea()" class="btn btn-danger round">Ẩn</a>
+                    <a onclick="showTableListPersionMirea()" class="btn btn-primary round">Hiển thị</a>
+                </div>
+                
+            </div>
+            <div class="card-body px-0 pb-0 tableListPersionMirea" style="display: none">
+                <div class="table-responsive">
+                    <table class='table mb-0 ' id="table1" >
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>ID</th>
+                                <th>Họ Và Tên</th>
+                                <th>Tên</th>
+                                <th>Mã cá nhân</th>
+                                <th>Email</th>
+                                <th>Trạng thái</th>
+                              </tr>
+                            </thead>
+                            <tbody id="tbodyPersonMirea">
+                              <!--Content-->
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+      
+
+
+     
+
+       
+
+        
+    </section>
+
+    <section id="basic-horizontal-layouts" style="margin: 50px;">
+        <div class="row match-height">
+            <div class="col-md-6 col-12">
+            <div class="card">
+                <div class="card-header">
+                <h4 class="card-title">RESET</h4>
+                </div>
+                <div class="card-content">
+                <div class="card-body">
+                    <div class="alert alert-light-success color-success text-center alertResetPersonSuccessfully" style="display: none; margin-bottom: 10px;"><strong>Reset kết quả bầu cử thành công</strong></div>
+                                    <div class="col-12 d-flex justify-content-center" style="margin: 20px 0px;">
+                                        <button onclick="resetPerson()" class="btn btn-lg btn-primary btn-block">RESET KẾT QUẢ BẦU CỬ</button>
+                                    </div>
+                                    <div class="alert alert-light-success color-success text-center alertResetPersonMireaSuccessfully" style="display: none; margin-bottom: 10px;"><strong>Reset trạng thái bầu cử thành công</strong></div>
+                                    <div class="col-12 d-flex justify-content-center" style="margin: 20px 0px;">
+                                        <button onclick="resetPersonMirea()" class="btn btn-lg btn-primary btn-block">RESET TRẠNG THÁI BẦU CỬ CỦA TẤT CẢ THÀNH VIÊN CHI ĐOÀN</button>
+                                    </div>
+                                    <div class="alert alert-light-success color-success text-center alertResetAllSuccessfully" style="display: none; margin-bottom: 10px;"><strong>Reset toàn hệ thống thành công</strong></div>
+                                    <div class="col-12 d-flex justify-content-center" style="margin: 20px 0px;">
+                                        <button onclick="resetAll()" class="btn btn-lg btn-primary btn-block">RESET TOÀN HỆ THỐNG</button>
+                                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                <h4 class="card-title">THÊM THÀNH VIÊN CHI ĐOÀN</h4>
+                </div>
+                <div class="card-content">
+                <div class="card-body">
+                    <form class="form form-horizontal" id="addPersonMirea">
+                    <div class="form-body">
+                        <div class="row">
+                        <div class="col-md-4">
+                            <label>Họ và tên</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                            <input type="text" id="fullname_mirea" class="form-control form-control" placeholder="Họ và tên">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Tên</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                            <input type="text" id="name_mirea" class="form-control form-control" placeholder="Tên">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>ID</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                            <input type="number" id="id_mirea" class="form-control form-control" placeholder="ID">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label>Email</label>
+                        </div>
+                        <div class="col-md-8 form-group">
+                            <input type="email" id="email_mirea" class="form-control form-control" placeholder="Email">
+                        </div>
+                        
+                        
+                        <div class="alert alert-light-success color-success text-center alertAddPersionMireaSuccessfully" style="display: none; margin-bottom: 10px;"><strong>Thêm thành viên thành công!</strong></div>
+                        <div class="col-12 d-flex justify-content-center" style="margin: 20px 0px;">
+                             <button type="submit" class="btn btn-lg btn-primary btn-block">THÊM</button>
+                        </div>
+
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                </div>
+            </div>
+
+            </div>
+            <div class="col-md-6 col-12">
+                <div class="card">
+                    <div class="card-header">
+                    <h4 class="card-title">THIẾT LẬP MÃ BẢO MẬT CHO PHIẾU BẦU CỬ</h4>
+                    </div>
+                    <div class="card-content">
+                    <div class="card-body">
+                        <form class="form form-horizontal" id="setCodeCheck">
+                        <div class="form-body">
+                            <div class="row">
+                            <div class="col-md-4">
+                                <label>Mã bảo mật</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                                <input type="text"" id="code_check" class="form-control form-control" placeholder="Mặc định: 'Default'" value="Default">
+                            </div>
+                            
+                            <div class="alert alert-light-success color-success text-center alertSetCodeCheckSuccessfully" style="display: none; margin-bottom: 10px;"><strong>Thiết lập mã bảo mật thành công!</strong></div>
+                            <div class="col-12 d-flex justify-content-center" style="margin: 20px 0px;">
+                                <button type="submit" class="btn btn-lg btn-primary btn-block">THIẾT LẬP</button>
+                            </div>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                    <h4 class="card-title">THIẾT LẬP SỐ LƯỢNG NHÂN SỰ</h4>
+                    </div>
+                    <div class="card-content">
+                    <div class="card-body">
+                        <form class="form form-horizontal" id="setQuantity">
+                        <div class="form-body">
+                            <div class="row">
+                            <div class="col-md-4">
+                                <label>Số ứng viên tham gia</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                                <input type="number" id="value_max" class="form-control form-control" placeholder="Số ứng viên tham gia">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label>Số ứng viên cần nhận</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                                <input type="number" id="value_needed" class="form-control form-control" placeholder="Số ứng viên cần nhận">
+                            </div>
+                            
+                            
+                            <div class="alert alert-light-success color-success text-center alertSetQuantitySuccessfully" style="display: none; margin-bottom: 10px;"><strong>Thiết lập thông số thành công!</strong></div>
+                            <div class="col-12 d-flex justify-content-center" style="margin: 20px 0px;">
+                                <button type="submit" class="btn btn-lg btn-primary btn-block">THIẾT LẬP</button>
+                            </div>
+
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+
+                
+
+                <div class="card">
+                    <div class="card-header">
+                    <h4 class="card-title">THÊM ỨNG VIÊN</h4>
+                    </div>
+                    <div class="card-content">
+                    <div class="card-body">
+                        <form class="form form-horizontal" id="addPersonForm">
+                        <div class="form-body">
+                            <div class="row">
+                            <div class="col-md-4">
+                                <label>Họ và tên</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                                <input type="text" id="name" class="form-control form-control" placeholder="Họ và tên">
+                            </div>
+
+                            <div class="col-md-4">
+                                <label>ID</label>
+                            </div>
+                            <div class="col-md-8 form-group">
+                                <input type="number" id="id" class="form-control form-control" placeholder="ID">
+                            </div>
+                            
+                            
+                            <div class="alert alert-light-success color-success text-center alertSuccessfully" style="display: none; margin-bottom: 10px;"><strong>Thêm ứng viên thành công!</strong></div>
+                            <div class="col-12 d-flex justify-content-center" style="margin: 20px 0px;">
+                                <button type="submit" class="btn btn-lg btn-primary btn-block">THÊM</button>
+                            </div>
+
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </section>
+</div>
+
+    
+    <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                   
+                    <div class="text-center">
+                        <p>2020 &copy; BCH ĐOÀN MIREA - ĐẠI HỌC CÔNG NGHỆ LIÊN BANG NGA</p>
+                    </div>
+                  
+                </div>
+    </footer>
+    <!--DBDB-->
+    
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
+    <script src="js/page-all-setting.js"></script>
+    <script src="assets/js/feather-icons/feather.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>   
+    <script src="https://kit.fontawesome.com/5a80452d2b.js" crossorigin="anonymous"></script>
+</body>
+</html>

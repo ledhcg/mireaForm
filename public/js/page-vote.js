@@ -50,14 +50,29 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+   //Authentication
+   firebase.auth().onAuthStateChanged(function (user) {
+    if (!user){
+        //console.log('user logged in: ', user);
+        window.location.replace('page-login.html');
+    } 
+  });
+
+  function logout(){
+    firebase.auth().signOut().then(function() {
+        window.location.replace('page-login.html');
+      }).catch(function(error) {
+        alert(error);
+      });
+  }
+
 
   var keyCheck ="Default";
-  
+ 
   var getDataCheckCode = firebase.database().ref('check');
   getDataCheckCode.on('value', function(snapshot) {
       var data = snapshot.val();
       keyCheck = data.key;
-      
   });
   var personQuantityNeeded = 0;
    
@@ -79,7 +94,7 @@ var firebaseConfig = {
     });
 }
 
-//localStorage.removeItem('key');
+localStorage.removeItem('key');
 checkValid();
 
 

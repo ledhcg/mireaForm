@@ -11,9 +11,32 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+ //Authentication
+ firebase.auth().onAuthStateChanged(function (user) {
+    if (!user){
+        //console.log('user logged in: ', user);
+        window.location.replace('page-login.html');
+    } 
+  });
+
+  function logout(){
+    firebase.auth().signOut().then(function() {
+        window.location.replace('page-login.html');
+      }).catch(function(error) {
+        alert(error);
+      });
+  }
 
 
-
+//Get quantity max
+var quantity_needed = 0;
+var quantity_max = 0;
+var getDataQuantity = firebase.database().ref('quantity');
+    getDataQuantity.on('value', function(snapshot) {
+        var data = snapshot.val();
+        quantity_needed = data.value_needed;
+        quantity_max = data.value_max;
+    });
   
 
 
@@ -69,7 +92,7 @@ function showTablePerson(){
     var trVote = `  <th scope="col">#</th>
                 <th scope="col">ID Ẩn danh</th>`;
     var html =``;
-    const getDataPerson = firebase.database().ref('person').orderByChild('votes');
+    const getDataPerson = firebase.database().ref('person');
     getDataPerson.on('value', function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
         const data = childSnapshot.val();
@@ -81,7 +104,7 @@ function showTablePerson(){
                     <td>
                     
                     <div class="progress" style="height: 15px;">
-                        <div class="progress-bar progress-striped" role="progressbar" style="width: ${data.percentage}%; text-align: left; padding-left:15px;" aria-valuenow="${data.percentage}" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar progress-striped" role="progressbar" style="width: ${data.percentage}%; text-align: left;" aria-valuenow="${data.percentage}" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                       
                     </td>
@@ -108,6 +131,7 @@ function showTablePerson(){
 function showChart(){
     let arrayDataPerson = [];
     let arrayDataVote = [];
+    let arrayDataColor = [];
     const addPerson = person => {
         const newArrayDataPerson = [...arrayDataPerson];
         newArrayDataPerson.push(person);
@@ -118,6 +142,13 @@ function showChart(){
         newArrayDataVote.push(vote);
         arrayDataVote = newArrayDataVote;
     }
+
+    const addColor = color => {
+        const newArrayDataColor = [...arrayDataColor];
+        newArrayDataColor.push(color);
+        arrayDataColor = newArrayDataColor;
+    }
+
     const getDataPerson = firebase.database().ref('person').orderByChild('votes');
     getDataPerson.on('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
@@ -125,13 +156,20 @@ function showChart(){
             addPerson(data.name);
             addVote(data.votes);
         });
+        for (var i = 1; i <= quantity_max-quantity_needed; i++){
+            addColor("#EBEFF6");
+        }
+        for (var i = quantity_max-quantity_needed; i <= quantity_max; i++){
+            addColor("#3245D1");
+        }
         //console.log("Array: ",arrayDataPerson); 
-        pushDataToChart(arrayDataPerson, arrayDataVote);
+        pushDataToChart(arrayDataPerson, arrayDataVote, arrayDataColor);
     });
+    
 
 }
 
-function pushDataToChart(arrayDataPerson, arrayDataVote){
+function pushDataToChart(arrayDataPerson, arrayDataVote, arrayDataColor){
 
     var ctxBar = document.getElementById("bar").getContext("2d");
     var myBar = new Chart(ctxBar, {
@@ -141,7 +179,7 @@ function pushDataToChart(arrayDataPerson, arrayDataVote){
         labels: arrayDataPerson,
         datasets: [{
         label: 'Votes',
-        backgroundColor: [chartColors.grey, chartColors.grey, chartColors.blue, chartColors.blue, chartColors.blue, chartColors.blue, chartColors.blue],
+        backgroundColor: arrayDataColor,
         data: arrayDataVote
         }]
     },
@@ -298,46 +336,6 @@ function showDisplay(){
     document.querySelector('.showTableResult').style.display ='block';
     document.querySelector('.preloadResult').style.display = 'none';
     document.querySelector('.preloadResult1').style.display = 'none'; 
-    document.querySelector('.preloadResult2').style.display = 'none'; 
-    document.querySelector('.preloadResult3').style.display = 'none'; 
+    document.querySelector('.preloadResult2').style.display = 'none';
 }
 
-
-//Show Person of Mirea
-showDataPersonMirea();
-function showDataPersonMirea(){
-    var count = 0;
-    var html =``;
-    
-    var showDataPersonMirea = firebase.database().ref('checkPerson');
-    showDataPersonMirea.on('value', function(snapshot) {
-        snapshot.forEach(function(childSnapshot) {
-            count++;
-
-            html +=` <tr>
-                    <th scope="row">${count}</th>`;
-
-            var data = childSnapshot.val();
-            
-                html += `
-                        <td>${data.name}</td>
-                        <td>${data.id}</td>`;
-                if (data.check){
-                    html +=`    <td>
-                                    <span class="badge bg-success">Đã bầu cử</span>
-                                </td>`;
-                } else {
-                    html +=`     <td>
-                                    <span class="badge bg-danger">Chưa bầu cử</span>
-                                </td>`;
-                }
-                            
-            
-            html += `</tr>`;
-            
-        });
-        document.getElementById('tbodyPersonMirea').innerHTML = html;
-        html =``;
-        count = 0;
-    });
-}

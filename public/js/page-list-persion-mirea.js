@@ -1,8 +1,4 @@
-/*
 
-
-
-*/
 var firebaseConfig = {
     apiKey: "AIzaSyC0hWE4guEcI63vPVvQv9vSpiCY37aXgtw",
     authDomain: "mirea-form-phieubaucu.firebaseapp.com",
@@ -17,43 +13,22 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 
 
+ //Authentication
+ firebase.auth().onAuthStateChanged(function (user) {
+    if (!user){
+        //console.log('user logged in: ', user);
+        window.location.replace('page-login.html');
+    } 
+  });
 
+  function logout(){
+    firebase.auth().signOut().then(function() {
+        window.location.replace('page-login.html');
+      }).catch(function(error) {
+        alert(error);
+      });
+  }
 
-//Function to get form values
-
-function getInputValue(id){
-    return document.getElementById(id).value;
-}
-
-//Listen for form submit 
-document.getElementById('addPersonMirea').addEventListener('submit', addPersonMirea);
-
-//submit form 
-function addPersonMirea(e) {
-    e.preventDefault();
-   
-    //Get value
-    var name = getInputValue('name');
-
-    var id = getInputValue('id');
-
-    saveDataPersonMirea(name,id);
-
-
-    document.querySelector('.alertSuccessfully').style.display = "block";
-    setTimeout(function(){
-        document.querySelector('.alertSuccessfully').style.display = "none";
-    }, 3000);
-}
-
-//Save data person
-function saveDataPersonMirea(name,  id){
-    firebase.database().ref('checkPerson/'+ id).set({
-        name: name,
-        id: id,
-        check: false
-    });
-}
 
 showDataVotes();
 function showDataVotes(){
@@ -71,9 +46,18 @@ function showDataVotes(){
             var data = childSnapshot.val();
             
                 html += `
-                        <td>${data.name}</td>
                         <td>${data.id}</td>
-                        <td>${data.check}</td>`;   
+                        <td>${data.fullname}</td>
+                        <td>${data.email}</td>`;  
+                if (data.check){
+                     html +=`    <td>
+                                       <span class="badge bg-success">Đã bầu cử</span>
+                                   </td>`;
+                 } else {
+                       html +=`     <td>
+                                    <span class="badge bg-danger">Chưa bầu cử</span>
+                                </td>`;
+                 } 
             
             html += `</tr>`;
             
