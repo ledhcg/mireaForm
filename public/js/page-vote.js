@@ -67,6 +67,33 @@ var firebaseConfig = {
   }
 
 
+
+  var getActiveLink = firebase.database().ref('statusLink');
+  getActiveLink.on('value', function(snapshot) {
+        var data = snapshot.val();
+        if(data.activeLink){
+            document.getElementById('showStatus').innerHTML = `<div class="card-header d-flex justify-content-between align-items-center">
+                                                                        <a class="btn btn-success round"><strong>TRẠNG THÁI ~ ĐANG HOẠT ĐỘNG </strong>|<i> https://mirea.dinhcuong.me/phieubaucudientu.html</i></a>            
+                                                                        <div>
+                                                                            <a onclick="inactiveLink()" class="btn btn-outline-danger round"><strong>KHÓA LINK</strong></a>
+                                                                            <a style="margin-left: 10px"></a>
+                                                                            <a onclick="activeLink()" class="btn btn-outline-primary round"><strong>MỞ LINK</strong></a>
+                                                                        </div>
+                                                                    </div>`;
+        } else {
+            document.getElementById('showStatus').innerHTML =  `<div class="card-header d-flex justify-content-between align-items-center">
+                                                                            <a class="btn btn-danger round"><strong>TRẠNG THÁI ~ ĐANG KHÓA</strong></a>            
+                                                                            <div>
+                                                                                <a onclick="inactiveLink()" class="btn btn-outline-danger round"><strong>KHÓA LINK</strong></a>
+                                                                                <a style="margin-left: 10px"></a>
+                                                                                <a onclick="activeLink()" class="btn btn-outline-primary round"><strong>MỞ LINK</strong></a>
+                                                                            </div>
+                                                                        </div>`;
+        };
+  });
+
+
+
   var keyCheck ="Default";
  
   var getDataCheckCode = firebase.database().ref('check');
@@ -169,7 +196,7 @@ function checkValid(){
             getQuantity();
             document.getElementById('showInputCode').innerHTML = ` <h6>MÃ ID CÁ NHÂN</h6>
                                                                      <div class="form-group" >
-                                                                         <input type="text" id="inputCodeValid" class="form-control form-control-lg" name="inputCodeValid"
+                                                                         <input type="password" id="inputCodeValid" class="form-control form-control-lg" name="inputCodeValid"
                                                                              placeholder="Dán ID từ email của bạn">
                                                                      </div>`;
 
@@ -350,7 +377,7 @@ function update(input_id){
 function showChooseName(){
     //var html=``;
     var html =`<option class="style-select-option-0" selected value="0">Chọn tên của bạn</option>`;
-    var getDataPerson = firebase.database().ref('checkPerson');
+    var getDataPerson = firebase.database().ref('checkPerson').orderByChild('name');
     getDataPerson.on('value', function(snapshot) {
     snapshot.forEach(function(childSnapshot) {
         var data = childSnapshot.val();
@@ -384,3 +411,17 @@ function checkCode(id, code){
     });
     return result;
 }
+
+
+function inactiveLink(){
+    firebase.database().ref('statusLink').set({
+        activeLink: false
+    });
+}
+
+function activeLink(){
+    firebase.database().ref('statusLink').set({
+        activeLink: true
+    });
+}
+

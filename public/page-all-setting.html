@@ -39,7 +39,7 @@
                 <a class="nav-link" href="page-vote.html">Phiếu bầu cử</a>
             </li>
           </ul>
-          <a onclick="logout()" class="btn btn-light">Đăng xuất</a>
+          <a onclick="logout()" class="btn btn-secondary round">Đăng xuất</a>
         </div>
       </nav>
 <div class="main-content container-fluid" style="margin-top: 50px;">
@@ -134,13 +134,20 @@
                                     <div class="col-12 d-flex justify-content-center" style="margin: 20px 0px;">
                                         <button onclick="resetPerson()" class="btn btn-lg btn-primary btn-block">RESET KẾT QUẢ BẦU CỬ</button>
                                     </div>
+
                                     <div class="alert alert-light-success color-success text-center alertResetPersonMireaSuccessfully" style="display: none; margin-bottom: 10px;"><strong>Reset trạng thái bầu cử thành công</strong></div>
                                     <div class="col-12 d-flex justify-content-center" style="margin: 20px 0px;">
                                         <button onclick="resetPersonMirea()" class="btn btn-lg btn-primary btn-block">RESET TRẠNG THÁI BẦU CỬ CỦA TẤT CẢ THÀNH VIÊN CHI ĐOÀN</button>
                                     </div>
+
+                                    <div class="alert alert-light-success color-success text-center alertResetFormSuccessfully" style="display: none; margin-bottom: 10px;"><strong>Reset phiên bầu cử thành công</strong></div>
+                                    <div class="col-12 d-flex justify-content-center" style="margin: 20px 0px;">
+                                        <button onclick="resetForm()" class="btn btn-lg btn-primary btn-block">RESET PHIÊN BẦU CỬ</button>
+                                    </div>
+
                                     <div class="alert alert-light-success color-success text-center alertResetAllSuccessfully" style="display: none; margin-bottom: 10px;"><strong>Reset toàn hệ thống thành công</strong></div>
                                     <div class="col-12 d-flex justify-content-center" style="margin: 20px 0px;">
-                                        <button onclick="resetAll()" class="btn btn-lg btn-primary btn-block">RESET TOÀN HỆ THỐNG</button>
+                                        <button onclick="resetAll()" class="btn btn-lg btn-danger btn-block">RESET TOÀN HỆ THỐNG</button>
                                     </div>
                 </div>
                 </div>

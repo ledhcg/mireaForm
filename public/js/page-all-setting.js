@@ -323,6 +323,30 @@ function resetPersonMirea(){
     }, 3000);
 }
 
+function resetForm(){
+
+    firebase.database().ref('data').remove();
+    firebase.database().ref('person').remove();
+    firebase.database().ref('countVotes').remove();
+    firebase.database().ref('countVotes').set({
+        total: 0
+    });
+    firebase.database().ref('quantity').set({
+        value_max: 0,
+        value_needed: 0
+    });
+    firebase.database().ref('check').set({
+        key: "Default"
+    });
+    firebase.database().ref('statusLink').set({
+        activeLink: false
+    });
+    document.querySelector('.alertResetFormSuccessfully').style.display = "block";
+    setTimeout(function(){
+        document.querySelector('.alertResetFormSuccessfully').style.display = "none";
+    }, 3000);
+}
+
 function resetAll(){
 
     firebase.database().ref('data').remove();
@@ -338,6 +362,9 @@ function resetAll(){
     });
     firebase.database().ref('check').set({
         key: "Default"
+    });
+    firebase.database().ref('statusLink').set({
+        activeLink: false
     });
     document.querySelector('.alertResetAllSuccessfully').style.display = "block";
     setTimeout(function(){

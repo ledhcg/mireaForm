@@ -35,7 +35,7 @@ function showDataVotes(){
     var count = 0;
     var html =``;
     
-    var showDataVotes = firebase.database().ref('checkPerson');
+    var showDataVotes = firebase.database().ref('checkPerson').orderByChild('name');
     showDataVotes.on('value', function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
             count++;

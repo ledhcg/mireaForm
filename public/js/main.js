@@ -51,6 +51,20 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 
 
+  var getActiveLink = firebase.database().ref('statusLink');
+  getActiveLink.on('value', function(snapshot) {
+        var data = snapshot.val();
+        if(data.activeLink){
+            checkValid();
+        } else {
+            showBlock();
+        };
+  });
+
+
+
+
+  
   var keyCheck ="Default";
   
   var getDataCheckCode = firebase.database().ref('check');
@@ -80,7 +94,7 @@ var firebaseConfig = {
 }
 
 //localStorage.removeItem('key');
-checkValid();
+//checkValid();
 
 
   //Show Table Person
@@ -180,6 +194,10 @@ function showStop(){
    
 }
 
+function showBlock(){
+    document.getElementById('mireaForm').innerHTML = `<div class="alert alert-danger text-center text-white text-success">LINK ĐANG BỊ KHÓA. VUI LÒNG QUAY LẠI SAU!</div>
+                                                        <image class="center-image-success" src="https://media.giphy.com/media/3o6fJeVJSTSXqzwaSk/giphy.gif"></image>`;
+}
 
 //Reference messages collection
 var dataRef = firebase.database().ref('data');
