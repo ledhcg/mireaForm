@@ -1,0 +1,445 @@
+{
+  "check" : {
+    "key" : "15112020"
+  },
+  "checkPerson" : [ null, {
+    "check" : false,
+    "code" : "mirea-quNfb79093346-10e2-407f-8f10-59bb704bb524",
+    "email" : "doldkins2k1@gmail.com",
+    "fullname" : "Hoàng Trịnh Lan Anh",
+    "id" : "1",
+    "name" : "Anh"
+  }, {
+    "check" : false,
+    "code" : "mirea-vHhz8f7c034b0-9f1f-4c59-a201-2a890e36ff03",
+    "email" : "anh99hoangtran@gmail.com",
+    "fullname" : "Trần Hoàng Anh",
+    "id" : "2",
+    "name" : "Anh"
+  }, {
+    "check" : false,
+    "code" : "mirea-ReSLd1b99c1a7-69c1-4462-94d9-14cd5a6817e0",
+    "email" : "anhthiho.ngch@gmail.com",
+    "fullname" : "Hồ Thị Ngọc Ánh",
+    "id" : "3",
+    "name" : "Ánh"
+  }, {
+    "check" : false,
+    "code" : "mirea-HAutM9443f721-fcac-48ad-bcf3-bc2a253097e2",
+    "email" : "nxb17111999@gmail.com",
+    "fullname" : "Nguyễn Xuân Bách",
+    "id" : "4",
+    "name" : "Bách"
+  }, {
+    "check" : false,
+    "code" : "mirea-sU9DVe427a2c1-c6fc-44fe-802c-8eed137f28a2",
+    "email" : "xuancanhit99@gmail.com",
+    "fullname" : "Vũ Xuân Cảnh",
+    "id" : "5",
+    "name" : "Cảnh"
+  }, {
+    "check" : false,
+    "code" : "mirea-8nFez45e43412-edc8-4428-8026-a2a00857225e",
+    "email" : "vutrichien00@gmail.com",
+    "fullname" : "Vũ Trí Chiến",
+    "id" : "6",
+    "name" : "Chiến"
+  }, {
+    "check" : false,
+    "code" : "mirea-NCsqs5660253a-e744-4acb-9a18-635e53127f1e",
+    "email" : "dinhcuong.firewin99@gmail.com",
+    "fullname" : "Lê Đình Cường",
+    "id" : "7",
+    "name" : "Cường"
+  }, {
+    "check" : false,
+    "code" : "mirea-BRiSy72101d07-a906-4f10-b34d-bb6fb6a8d86f",
+    "email" : "nguyendanh2402@gmail.com",
+    "fullname" : "Nguyễn Thế Danh",
+    "id" : "8",
+    "name" : "Danh"
+  }, {
+    "check" : false,
+    "code" : "mirea-yX6v487528cce-e65f-4d79-81b8-9835921504ad",
+    "email" : "admin@dinhcuong.me",
+    "fullname" : "Admin_01",
+    "id" : "9",
+    "name" : "Admin_01"
+  }, {
+    "check" : false,
+    "code" : "mirea-7Vwm6f7005f58-0bc1-47fc-b11a-2267d87cd702",
+    "email" : "tuandungvtdt@gmail.com",
+    "fullname" : "Hoàng Văn Dũng",
+    "id" : "10",
+    "name" : "Dũng"
+  }, {
+    "check" : false,
+    "code" : "mirea-FPl8sd10164a0-d233-4361-983d-3a537760a60c",
+    "email" : "maitiendungtn1999@gmail.com",
+    "fullname" : "Mai Tiến Dũng",
+    "id" : "11",
+    "name" : "Dũng"
+  }, {
+    "check" : false,
+    "code" : "mirea-e6QMH026cb328-d47a-43fb-a872-e42c13f6d326",
+    "email" : "codonmaimai92@gmail.com",
+    "fullname" : "Nguyễn Văn Dũng",
+    "id" : "12",
+    "name" : "Dũng"
+  }, {
+    "check" : false,
+    "code" : "mirea-XerQnd26d1e49-89bd-46b0-9ea2-992beb3ae0f1",
+    "email" : "phamquangdung92@yandex.ru",
+    "fullname" : "Phạm Quang Dũng",
+    "id" : "13",
+    "name" : "Dũng"
+  }, {
+    "check" : false,
+    "code" : "mirea-08XTRfec18489-df0a-4364-ae6e-700bc47f50e5",
+    "email" : "vietdang94@gmail.com",
+    "fullname" : "Nguyễn Việt Đăng",
+    "id" : "14",
+    "name" : "Đăng"
+  }, {
+    "check" : false,
+    "code" : "mirea-y5h861a0d86c0-38bd-49bb-94bd-20880675907d",
+    "email" : "dongpt410@gmail.com",
+    "fullname" : "Phương Tiến Đông",
+    "id" : "15",
+    "name" : "Đông"
+  }, {
+    "check" : false,
+    "code" : "mirea-OiShM993bea84-2189-464f-b012-302b43d4407a",
+    "email" : "admin@dinhcuong.me",
+    "fullname" : "Admin_02",
+    "id" : "16",
+    "name" : "Admin_02"
+  }, {
+    "check" : false,
+    "code" : "mirea-SORePf80c056e-c2ae-4568-a490-694449d4a351",
+    "email" : "mionna1999@gmail.com",
+    "fullname" : "Phạm Hương Giang",
+    "id" : "17",
+    "name" : "Giang"
+  }, {
+    "check" : false,
+    "code" : "mirea-oZ0nbc9c7d11c-1862-445a-b8f4-45b9c5477ddf",
+    "email" : "hanguyen18041997@gmail.com",
+    "fullname" : "Nguyễn Thu Hà",
+    "id" : "18",
+    "name" : "Hà"
+  }, {
+    "check" : false,
+    "code" : "mirea-8vT5d369e72da-bf6d-4bf9-84c7-1c99572016da",
+    "email" : "Lethanhhien9925@gmail.com",
+    "fullname" : "Lê Thanh Hiền",
+    "id" : "19",
+    "name" : "Hiền"
+  }, {
+    "check" : false,
+    "code" : "mirea-rLbHHea7f1d00-482c-4982-88c0-d80a07b13783",
+    "email" : "hieuminh735@gmail.com",
+    "fullname" : "Nguyễn Minh Hiếu",
+    "id" : "20",
+    "name" : "Hiếu"
+  }, {
+    "check" : false,
+    "code" : "mirea-ybvC327ba2637-506a-4182-aec9-458ee0fbe46d",
+    "email" : "quanghieu1110qb@gmail.com",
+    "fullname" : "Nguyễn Quang Hiếu",
+    "id" : "21",
+    "name" : "Hiếu"
+  }, {
+    "check" : false,
+    "code" : "mirea-XuGsV81ad59da-8e58-42f2-bb81-581f68d38376",
+    "email" : "phamthihoa951997@gmail.com",
+    "fullname" : "Phạm Thị Hoa",
+    "id" : "22",
+    "name" : "Hoa"
+  }, {
+    "check" : false,
+    "code" : "mirea-k5CHA2357bb7a-69be-44ed-abf7-edfb5333be62",
+    "email" : "hoacapvan1@gmail.com",
+    "fullname" : "Cáp Văn Hoà",
+    "id" : "23",
+    "name" : "Hoà"
+  }, {
+    "check" : false,
+    "code" : "mirea-0a7bs9b54d25e-1c47-43f0-8ec6-ef137e1ec818",
+    "email" : "Tranthuhoan06@gmail.com",
+    "fullname" : "Trần Thị Thu Hoàn",
+    "id" : "24",
+    "name" : "Hoàn"
+  }, {
+    "check" : false,
+    "code" : "mirea-qQWc73a8e4713-821a-4a8f-9044-654bc1f5d314",
+    "email" : "duonghoang.ttndvn@gmail.com",
+    "fullname" : "Dương Đức Hoàng",
+    "id" : "25",
+    "name" : "Hoàng"
+  }, {
+    "check" : false,
+    "code" : "mirea-vJiT1bb7f82b9-e992-4d3b-9fbc-156ab83405c1",
+    "email" : "lovanhung19042000@gmail.com",
+    "fullname" : "Lò Văn Hùng",
+    "id" : "26",
+    "name" : "Hùng"
+  }, {
+    "check" : false,
+    "code" : "mirea-QgwBsb784bc98-2153-4eca-a555-db85d22c6615",
+    "email" : "qhung1403@gmail.com",
+    "fullname" : "Nguyễn Quang Hưng",
+    "id" : "27",
+    "name" : "Hưng"
+  }, {
+    "check" : false,
+    "code" : "mirea-ANWFfd248aa77-3bdd-4f59-a42e-b499fc99499e",
+    "email" : "vmu18honhatkhanh@gmail.com",
+    "fullname" : "Hồ Nhật Khánh",
+    "id" : "28",
+    "name" : "Khánh"
+  }, {
+    "check" : false,
+    "code" : "mirea-vwh8B41e3499b-581f-454a-b882-535c6c235510",
+    "email" : "khanhmtak45@gmail.com",
+    "fullname" : "Phạm Lê Quốc Khánh",
+    "id" : "29",
+    "name" : "Khánh"
+  }, {
+    "check" : false,
+    "code" : "mirea-raSUJc8aa3d49-2ceb-4b14-9351-158beac3782d",
+    "email" : "letrungkienlk4@gmail.com",
+    "fullname" : "Lê Trung Kiên",
+    "id" : "30",
+    "name" : "Kiên"
+  }, {
+    "check" : false,
+    "code" : "mirea-NpFFIcfbdb898-3bb6-474c-9a06-cba8a4c83af7",
+    "email" : "tieubaolinhnhi@gmail.com",
+    "fullname" : "Chu Thị Thùy Linh",
+    "id" : "31",
+    "name" : "Linh"
+  }, {
+    "check" : false,
+    "code" : "mirea-pXgc2834f33b5-66ab-444b-b9cc-8bb0929bc4cc",
+    "email" : "ntkieulinh2711@gmail.com",
+    "fullname" : "Nguyễn Thị Kiều Linh",
+    "id" : "32",
+    "name" : "Linh"
+  }, {
+    "check" : false,
+    "code" : "mirea-7dAlbcec988eb-a7ac-49c8-bf2c-28e5e9af7a98",
+    "email" : "hailong27102000@gmail.com",
+    "fullname" : "Đặng Hải Long",
+    "id" : "33",
+    "name" : "Long"
+  }, {
+    "check" : false,
+    "code" : "mirea-0sBodec2d2fc2-aee2-4968-9094-e1816542a397",
+    "email" : "admin@dinhcuong.me",
+    "fullname" : "Admin_03",
+    "id" : "34",
+    "name" : "Admin_03"
+  }, {
+    "check" : false,
+    "code" : "mirea-79r5Qa26963de-0889-4bb3-93ce-d7fb7f9ce2fb",
+    "email" : "ngvmanh129@gmail.com",
+    "fullname" : "Nguyễn Văn Mạnh",
+    "id" : "35",
+    "name" : "Mạnh"
+  }, {
+    "check" : false,
+    "code" : "mirea-pz73Jdea873ec-6af1-4448-9a9c-7656068253c6",
+    "email" : "manh331919@gmail.com",
+    "fullname" : "Thái Văn Mạnh",
+    "id" : "36",
+    "name" : "Mạnh"
+  }, {
+    "check" : false,
+    "code" : "mirea-r9mJK1138c8e1-f480-40ab-8319-01f9c5ee5b17",
+    "email" : "nguyenminhhvkq1009@gmail.com",
+    "fullname" : "Nguyễn Văn Minh",
+    "id" : "37",
+    "name" : "Minh"
+  }, {
+    "check" : false,
+    "code" : "mirea-5Lvax0530a762-cf79-4ec8-8ce3-c4f9a0f2e94e",
+    "email" : "Chungan2306@gmail.com",
+    "fullname" : "Chu Thị Ngân",
+    "id" : "38",
+    "name" : "Ngân"
+  }, {
+    "check" : false,
+    "code" : "mirea-TKLuT1d547a4f-44f6-4a90-b5c7-983dde5346e8",
+    "email" : "nguyentrongnghia0522@gmail.com",
+    "fullname" : "Nguyễn Trọng Nghĩa",
+    "id" : "39",
+    "name" : "Nghĩa"
+  }, {
+    "check" : false,
+    "code" : "mirea-sc7IC2728d251-5948-4ebb-ac40-b6908d6fc298",
+    "email" : "hoanghanhnhu112@gmail.com",
+    "fullname" : "Hoàng Hạnh Như",
+    "id" : "40",
+    "name" : "Như"
+  }, {
+    "check" : false,
+    "code" : "mirea-74pBh52078cfb-5337-4e3c-a99c-0c320f3681d7",
+    "email" : "luaquehuong93ht@gmail.com",
+    "fullname" : "Đinh Bá Phương",
+    "id" : "41",
+    "name" : "Phương"
+  }, {
+    "check" : false,
+    "code" : "mirea-bs3X0261a39d9-9399-42c2-b81e-18b3c9a96702",
+    "email" : "admin@dinhcuong.me",
+    "fullname" : "Admin_04",
+    "id" : "42",
+    "name" : "Admin_04"
+  }, {
+    "check" : false,
+    "code" : "mirea-JbwIlb71149d2-284c-4c0e-ad98-78f8e025fa27",
+    "email" : "admin@dinhcuong.me",
+    "fullname" : "Admin_05",
+    "id" : "43",
+    "name" : "Admin_05"
+  }, {
+    "check" : false,
+    "code" : "mirea-zXG7C73dcf6a4-afbf-4966-86ed-b363a5b31a1e",
+    "email" : "tr.son.2112@gmail.com",
+    "fullname" : "Vương Trường Sơn",
+    "id" : "44",
+    "name" : "Sơn"
+  }, {
+    "check" : false,
+    "code" : "mirea-B0gmea102688b-0e7a-4a0e-bb90-022b573c3abf",
+    "email" : "admin@dinhcuong.me",
+    "fullname" : "Admin_06",
+    "id" : "45",
+    "name" : "Admin_06"
+  }, {
+    "check" : false,
+    "code" : "mirea-Gnx7Zef950f18-df4a-460d-937a-4142706631f2",
+    "email" : "dovuminhthang@gmail.com",
+    "fullname" : "Đỗ Vũ Minh Thắng",
+    "id" : "46",
+    "name" : "Thắng"
+  }, {
+    "check" : false,
+    "code" : "mirea-kBPUd1a7b0d69-0ca8-421e-8c59-f446f0fcc86a",
+    "email" : "thuc.dang0209@hcmut.edu.vn",
+    "fullname" : "Đặng Văn Thức",
+    "id" : "47",
+    "name" : "Thức"
+  }, {
+    "check" : false,
+    "code" : "mirea-MurPkdd4be0b5-404b-4d97-b57a-f656cc21d774",
+    "email" : "dotrungtien1993@gmail.com",
+    "fullname" : "Đỗ Trung Tiến",
+    "id" : "48",
+    "name" : "Tiến"
+  }, {
+    "check" : false,
+    "code" : "mirea-hFBZted43a7d3-aaba-4e88-aea4-bf29b24e7073",
+    "email" : "tuclen123@gmial.com",
+    "fullname" : "Nguyễn Hữu Thành Trung",
+    "id" : "49",
+    "name" : "Trung"
+  }, {
+    "check" : false,
+    "code" : "mirea-r9g8M210bf6d1-0faa-4da8-a92d-9f61e638a098",
+    "email" : "dinhnhattruong211@gmail.com",
+    "fullname" : "Đinh Nhật Trường",
+    "id" : "50",
+    "name" : "Trường"
+  }, {
+    "check" : false,
+    "code" : "mirea-cm0Sm70cc2c26-c8f0-4eed-b665-943e09d57b9e",
+    "email" : "tutran1998.tt@gmail.com",
+    "fullname" : "Trần Anh Tú",
+    "id" : "51",
+    "name" : "Tú"
+  }, {
+    "check" : false,
+    "code" : "mirea-pMtDo64d3762c-a806-466b-9eb1-cdda932fa0eb",
+    "email" : "tuanmya2pkkq@gmail.com",
+    "fullname" : "Nguyễn Văn Tuấn",
+    "id" : "52",
+    "name" : "Tuấn"
+  }, {
+    "check" : false,
+    "code" : "mirea-8omEGe4d5220d-2e23-4c37-b740-2717b08ac487",
+    "email" : "anhtutula@gmail.com",
+    "fullname" : "Phạm Văn Tư",
+    "id" : "53",
+    "name" : "Tư"
+  }, {
+    "check" : false,
+    "code" : "mirea-bsFn96129943c-5c04-4b19-ae18-d1a57a71252e",
+    "email" : "nguyenminhtuong31292@Gmail.com",
+    "fullname" : "Nguyễn Minh Tường",
+    "id" : "54",
+    "name" : "Tường"
+  }, {
+    "check" : false,
+    "code" : "mirea-Qy6I6f8efccd5-b03b-4300-9e79-0f3d440c218e",
+    "email" : "fanvucattuong@gmail.com",
+    "fullname" : "Phạm Thị Thanh Vân",
+    "id" : "55",
+    "name" : "Vân"
+  } ],
+  "countVotes" : {
+    "total" : 0
+  },
+  "person" : {
+    "person1" : {
+      "input_id" : "person1",
+      "name" : "Phạm Thị Thanh Vân",
+      "percentage" : 0,
+      "votes" : 0
+    },
+    "person2" : {
+      "input_id" : "person2",
+      "name" : "Nguyễn Văn Tuấn",
+      "percentage" : 0,
+      "votes" : 0
+    },
+    "person3" : {
+      "input_id" : "person3",
+      "name" : "Trần Hoàng Anh",
+      "percentage" : 0,
+      "votes" : 0
+    },
+    "person4" : {
+      "input_id" : "person4",
+      "name" : "Hồ Thị Ngọc Ánh",
+      "percentage" : 0,
+      "votes" : 0
+    },
+    "person5" : {
+      "input_id" : "person5",
+      "name" : "Lê Trung Kiên",
+      "percentage" : 0,
+      "votes" : 0
+    },
+    "person6" : {
+      "input_id" : "person6",
+      "name" : "Hoàng Hạnh Như",
+      "percentage" : 0,
+      "votes" : 0
+    },
+    "person7" : {
+      "input_id" : "person7",
+      "name" : "Lê Đình Cường",
+      "percentage" : 0,
+      "votes" : 0
+    }
+  },
+  "quantity" : {
+    "value_max" : 7,
+    "value_needed" : 5
+  },
+  "statusLink" : {
+    "activeLink" : false
+  }
+}
